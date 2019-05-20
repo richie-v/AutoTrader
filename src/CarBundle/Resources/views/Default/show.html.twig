@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+    {{ car.getModel().getName() }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ car.getMake().getName() }} {{ car.getModel().getName() }}</h1>
+    <table class="table">
+        <tr>
+            <td>Price</td>
+            <td>{{ car.getPrice() }}</td>
+        </tr>
+        <tr>
+            <td>Year</td>
+            <td>{{ car.getYear() }}</td>
+        </tr>
+        <tr>
+            <td>Navigation System</td>
+            <td>
+                {% if car.getNavigation %}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <p>{{ car.getDescription() }}</p>
+    <a href="{{ url('offer') }}">Back</a>
+{% endblock %}

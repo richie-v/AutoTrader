@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Our Offer</h1>
+    <div class="float-right">
+        {{ form_start(form, {attr: {class: 'form-inline'}}) }}
+        {{ form_widget(form.search, {attr: {placeholder: 'Search'}}) }}
+        <button class="btn" type="submit">Search</button>
+        {{ form_errors(form.search) }}
+        {{ form_end(form) }}
+        <br>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Make</th>
+            <th>Name</th>
+            <th>Details</th>
+        </tr>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.getMake().getName() }}</td>
+                <td>{{ car.getModel().getName() }}</td>
+                <td><a href="{{ url('show_car', {id: car.getId()}) }}">Show details</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
